@@ -1,13 +1,11 @@
 package ro.pao.model.products;
-
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+@SuperBuilder
+@Getter
 public class Encyclopedia extends Book
 {
     private String domain;
-    public Encyclopedia(String title, String authors, String category, int year, String domain)
-    {
-        super(title, authors, category, year);
-        this.domain = domain;
-    }
     @Override
     public void addToCollection()
     {

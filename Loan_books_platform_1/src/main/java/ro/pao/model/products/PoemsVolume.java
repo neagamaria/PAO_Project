@@ -1,16 +1,12 @@
 package ro.pao.model.products;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+@SuperBuilder
+@Getter
 public class PoemsVolume extends Book
 {
     private final int number_poems;
     private String literary_current;
-
-    public PoemsVolume(String title, String authors, String category, int year, int number, String current)
-    {
-        super(title, authors, category, year);
-        this.number_poems = number;
-        this.literary_current = current;
-    }
-
     @Override
     public void addToCollection()
     {

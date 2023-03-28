@@ -1,7 +1,6 @@
 package ro.pao.service.impl;
-import model.administration.Loan;
-import model.abstracts.Item;
-import model.abstracts.Reader;
+
+import ro.pao.model.administration.Loan;
 import ro.pao.service.LoanService;
 
 import java.util.ArrayList;

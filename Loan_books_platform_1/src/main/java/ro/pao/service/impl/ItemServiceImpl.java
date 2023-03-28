@@ -1,5 +1,5 @@
 package ro.pao.service.impl;
-import model.abstracts.Item;
+import ro.pao.model.abstracts.Item;
 import ro.pao.service.ItemService;
 import java.util.ArrayList;
 import java.util.List;

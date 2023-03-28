@@ -1,5 +1,10 @@
 package ro.pao.model.administration;
-import model.abstracts.Reader;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+import ro.pao.model.abstracts.Reader;
+
+@SuperBuilder
+@Getter
 public class Company extends Reader
 {
     private String link;

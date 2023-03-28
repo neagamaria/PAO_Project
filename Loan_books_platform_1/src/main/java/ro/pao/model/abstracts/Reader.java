@@ -1,5 +1,6 @@
 package ro.pao.model.abstracts;
 import java.util.UUID;
+
 public abstract class Reader
 {
     private UUID readerID;

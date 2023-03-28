@@ -1,5 +1,17 @@
 package ro.pao.model.abstracts;
+
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 import java.util.UUID;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@ToString
+@EqualsAndHashCode
 public abstract class Item
 {
     private UUID itemId;
@@ -8,11 +20,6 @@ public abstract class Item
     private int number_copies;
     static int total_items = 0;
 
-    public Item(String title, String authors)
-    {
-        this.title = title;
-        this.authors = authors;
-    }
     static
     {
         total_items++;

@@ -1,5 +1,5 @@
 package ro.pao.service;
-import model.abstracts.Item;
+import ro.pao.model.abstracts.Item;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

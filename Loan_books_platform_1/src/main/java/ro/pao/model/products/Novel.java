@@ -1,19 +1,19 @@
 package ro.pao.model.products;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@SuperBuilder
+
 public class Novel extends Book
 {
     private int volume = 0; //number of volume 0 means the novel has no more other volumes
     private int number_chapters;
 
-    public Novel(String title, String authors, String category, int year, int volume, int chapters)
-    {
-        super(title, authors, category, year);
-        this.volume = volume;
-        this.number_chapters = chapters;
-    }
     //constructor for novel without multiple volumes
-    public Novel(String title, String authors, String category, int year, int chapters)
+    public Novel(String publishing, String category, int publishing_year, int chapters)
     {
-        super(title, authors, category, year);
+        super(publishing, category, publishing_year);
         this.number_chapters = chapters;
     }
     public void addVolumeToName()

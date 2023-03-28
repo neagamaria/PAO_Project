@@ -1,17 +1,14 @@
 package ro.pao.model.administration;
-import model.abstracts.Reader;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+import ro.pao.model.abstracts.Reader;
+
+@SuperBuilder
+@Getter
 public class Person extends Reader
 {
     private int age;
     private String email;
-
-    public Person(String name)
-    {
-        super(name);
-        this.age = age;
-        this.email = email;
-    }
-
     @Override
     public void logIn()
     {

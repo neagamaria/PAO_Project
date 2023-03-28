@@ -1,7 +1,7 @@
 package ro.pao.service;
-import model.administration.Loan;
-import model.abstracts.Item;
-import model.abstracts.Reader;
+
+import ro.pao.model.administration.Loan;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

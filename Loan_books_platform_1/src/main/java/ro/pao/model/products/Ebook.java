@@ -1,17 +1,13 @@
 package ro.pao.model.products;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 import ro.pao.model.abstracts.Item;
-
+@SuperBuilder
+@Getter
 public class Ebook extends Item
 {
     private int size;
     private String format;
-
-    public Ebook(String title, String authors, int size, String format)
-    {
-        super(title, authors);
-        this.size = size;
-        this.format = format;
-    }
 
     @Override
     public void addToCollection()
