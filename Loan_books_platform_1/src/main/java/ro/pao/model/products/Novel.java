@@ -24,7 +24,6 @@ public class Novel extends Book
             this.setTitle(volume);
         }
     }
-
     @Override
     public void addToCollection()
     {

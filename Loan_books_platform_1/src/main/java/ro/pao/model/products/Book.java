@@ -17,32 +17,4 @@ public class Book extends Item
     {
         System.out.println("The book " + this.getTitle() + " was added to the collection.");
     }
-    public String getCategory()
-    {
-        return category;
-    }
-    public void setCategory(String category)
-    {
-        this.category = category;
-    }
-
-    public String getPublishing()
-    {
-        return publishing;
-    }
-
-    public void setPublishing(String publishing)
-    {
-        this.publishing = publishing;
-    }
-
-    public int getPublishing_year()
-    {
-        return publishing_year;
-    }
-
-    public void setPublishing_year(int publishing_year)
-    {
-        this.publishing_year = publishing_year;
-    }
 }
