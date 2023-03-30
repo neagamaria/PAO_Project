@@ -8,7 +8,7 @@ import ro.pao.model.abstracts.Reader;
 public class Company extends Reader
 {
     private String link;
-    private int number_employees;
+    private int number_readers;
     static int count = 0;
     @Override
     public void logIn()

@@ -1,6 +1,7 @@
 package ro.pao.service.impl;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 import ro.pao.model.administration.Loan;
 import ro.pao.service.LoanService;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
+@Setter
 public class LoanServiceImpl implements LoanService
 {
     private static List<Loan> loanList = new ArrayList<>();

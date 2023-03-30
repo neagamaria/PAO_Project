@@ -3,7 +3,7 @@ package ro.pao.model.abstracts;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import java.util.UUID;
-
+import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,11 +16,6 @@ public abstract class Reader
 {
     private UUID readerID;
     private String name;
-    static int number_readers = 0;
+    private Date joinDate;
     public abstract void logIn();
-
-    static
-    {
-        number_readers++;
-    }
 }

@@ -5,6 +5,7 @@ import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Getter
+@Setter
 @AllArgsConstructor
 
 public class Book extends Item
