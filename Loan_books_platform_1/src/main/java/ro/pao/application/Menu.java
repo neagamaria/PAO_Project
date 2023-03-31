@@ -72,7 +72,7 @@ public class Menu
         platformReaders.add(Person.builder()
                 .readerID(UUID.randomUUID())
                 .name("Georgescu Elena")
-                .joinDate(new Date(2022, 5, 7)) // set join date to March 1st, 2022
+                .joinDate(new Date(2022, 5, 7))
                 .age(33)
                 .email("elenag@yahoo.ro")
                 .build());
@@ -80,7 +80,7 @@ public class Menu
         platformReaders.add(Person.builder()
                 .readerID(UUID.randomUUID())
                 .name("Ionescu Anca")
-                .joinDate(new Date(2022, 12, 22)) // set join date to March 1st, 2022
+                .joinDate(new Date(2022, 12, 22))
                 .age(40)
                 .email("ancaionescu@yahoo.com")
                 .build());
@@ -88,7 +88,7 @@ public class Menu
         platformReaders.add(Company.builder()
                 .readerID(UUID.randomUUID())
                 .name("Vodafone")
-                .joinDate(new Date(2022, 2, 1)) // set join date to March 1st, 2022
+                .joinDate(new Date(2022, 2, 1))
                 .number_readers(100)
                 .link("www.vodafone.ro")
                 .build());
@@ -96,7 +96,7 @@ public class Menu
         platformReaders.add(Company.builder()
                 .readerID(UUID.randomUUID())
                 .name("Revolut")
-                .joinDate(new Date(2023, 3, 4)) // set join date to March 1st, 2022
+                .joinDate(new Date(2023, 3, 4))
                 .number_readers(50)
                 .link("www.revolut.com")
                 .build());
@@ -104,7 +104,7 @@ public class Menu
         platformReaders.add(Company.builder()
                 .readerID(UUID.randomUUID())
                 .name("eMag")
-                .joinDate(new Date(2022, 10, 11)) // set join date to March 1st, 2022
+                .joinDate(new Date(2022, 10, 11))
                 .number_readers(50)
                 .link("www.emag.ro")
                 .build());
