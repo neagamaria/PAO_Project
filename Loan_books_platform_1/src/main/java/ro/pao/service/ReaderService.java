@@ -9,7 +9,7 @@ import java.util.UUID;
 public interface ReaderService
 {
     Optional<Reader> getById(UUID id);
-    Optional<Reader> getBySomeFieldOfClass(Object someFieldFromClass);
+    Optional<Reader> getByName(String name);
     List<Reader> getAll();
     void addAll(List<Reader> readerList);
     void addOne(Reader reader);

@@ -29,6 +29,12 @@ public class BookServiceImpl implements BookService
         List<Book> list = bookList.stream().filter(book -> book.getCategory().equals(category)).collect(Collectors.toList());
         return Optional.ofNullable(list);
     }
+    @Override
+    public Optional<Book> getByTitle(String title)
+    {
+        Optional<Book> titleBook = bookList.stream().filter(book -> book.getTitle().equals(title)).findAny();
+        return titleBook;
+    }
 
     @Override
     public List<Book> getAll()

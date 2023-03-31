@@ -1,16 +1,16 @@
 package ro.pao.service.impl;
 
-import ro.pao.model.administration.Subscription;
-import ro.pao.service.SubscriptionService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import ro.pao.model.administration.Subscription;
+import ro.pao.service.SubscriptionService;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-
-import java.util.ArrayList;
-import java.util.List;
 @NoArgsConstructor
 @Getter
 public class SubscriptionServiceImpl implements SubscriptionService
@@ -25,9 +25,12 @@ public class SubscriptionServiceImpl implements SubscriptionService
     }
 
     @Override
-    public Optional<Subscription> getBySomeFieldOfClass(Object someFieldFromClass)
+    public Optional<List<Subscription>> getByPrice(double price)
     {
-        return Optional.empty();
+        List<Subscription> list = subscriptionList.stream().filter(subscription -> String.valueOf(subscription.getPrice())
+                        .equals(String.valueOf(price)))
+                        .collect(Collectors.toList());
+        return Optional.ofNullable(list);
     }
 
     @Override

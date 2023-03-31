@@ -22,9 +22,10 @@ public class ReaderServiceImpl implements ReaderService
         return readerList.stream().filter(obj -> id.equals(obj.getReaderID())).findAny();
     }
     @Override
-    public Optional<Reader> getBySomeFieldOfClass(Object someFieldFromClass)
+    public Optional<Reader> getByName(String name)
     {
-        return Optional.empty();
+        Optional<Reader> reader = readerList.stream().filter(book -> book.getName().equals(name)).findAny();
+        return reader;
     }
     @Override
     public List<Reader> getAll()

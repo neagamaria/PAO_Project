@@ -12,6 +12,9 @@ import ro.pao.service.BookService;
 import ro.pao.service.ReaderService;
 import ro.pao.service.impl.BookServiceImpl;
 import ro.pao.service.impl.ReaderServiceImpl;
+import ro.pao.model.administration.Loan;
+import ro.pao.model.abstracts.Item;
+import ro.pao.model.products.Ebook;
 
 import java.util.*;
 public class Menu
@@ -28,18 +31,35 @@ public class Menu
     private Menu()
     {
     }
+    //function used to verify if a given category is in the book categories list
+    public boolean isStringInEnum(String input)
+    {
+        try
+        {
+            BookCategory.valueOf(input);
+            return true;
+        }
+        catch (IllegalArgumentException e)
+        {
+            return false;
+        }
+    }
 
+    public void options()
+    {
+        String text = "Choose an action:\n1.Display all readers sorted by join_date\n" +
+                "2.Display the new collection of books\n3.Open a new loan\n";
+        System.out.println(text);
+    }
     public void intro()
     {
-        String intro = """
-                Intro example
-                """;
-
-        System.out.println(intro);
+        this.options();
+        Scanner sc1= new Scanner(System.in);
+        int option = sc1.nextInt();
+        System.out.println(option);
 
         //list of readers with upcasting
         //created for sorting
-
         List<Reader> platformReaders = new ArrayList<>();
         platformReaders.add(Person.builder()
                 .readerID(UUID.randomUUID())
@@ -89,20 +109,6 @@ public class Menu
                 .link("www.emag.ro")
                 .build());
 
-        Collections.sort(platformReaders, new Comparator<Reader>(){
-            public int compare(Reader r1, Reader r2)
-            {
-                if(r1.getJoinDate().before(r2.getJoinDate()))
-                    return -1;
-                else if(r1.getJoinDate().after(r2.getJoinDate()))
-                        return 1;
-                return 0;
-            }
-        });
-
-        readerService.addAll(platformReaders);
-        System.out.println("The list of logged readers sorted by join_date: ");
-        readerService.getAll().forEach(elementFromList -> System.out.println(elementFromList));
 
         //list of Books with upcasting
         List<Book> newCollection = List.of(
@@ -188,30 +194,168 @@ public class Menu
                         .build());
 
 
-        bookService.addAll(newCollection);
-        System.out.println("\n\nThe new collection: ");
-        bookService.getAll().forEach(elementFromList -> System.out.println(elementFromList));
-
-        //get all books from a given category
-        Optional <List<Book>> booksToRemove = bookService.getByCategory("psychology");
-        System.out.println("\n\nThe list of books from the given category (to be removed): ");
-
-        //remove from list of books
-        if(!booksToRemove.isEmpty())
+        if(option == 1)
         {
-            List<Book> booksToRemoveList = booksToRemove.orElse(Collections.emptyList());
-            for(Book book : booksToRemoveList)
+            Collections.sort(platformReaders, new Comparator<Reader>()
             {
-                System.out.println(book + "\n");
-                bookService.removeById(book.getItemId());
-            }
+                public int compare(Reader r1, Reader r2)
+                {
+                    if(r1.getJoinDate().before(r2.getJoinDate()))
+                        return -1;
+                    else if(r1.getJoinDate().after(r2.getJoinDate()))
+                        return 1;
+                    return 0;
+                }
+            });
+
+            readerService.addAll(platformReaders);
+            System.out.println("The list of logged readers sorted by join_date: ");
+            readerService.getAll().forEach(elementFromList -> System.out.println(elementFromList));
         }
+
         else
         {
-            System.out.println("There are no books from the given category\n\n");
+            if(option == 2)
+            {
+                bookService.addAll(newCollection);
+                System.out.println("\n\nThe new collection: ");
+                bookService.getAll().forEach(elementFromList -> System.out.println(elementFromList));
+
+                //get all books from a given category
+                System.out.println("\n\nCategory of books (to be removed): ");
+                Scanner sc= new Scanner(System.in);
+                String givenCategory= sc.nextLine();
+
+                if(isStringInEnum(givenCategory.toUpperCase()))
+                {
+                    Optional <List<Book>> booksToRemove = bookService.getByCategory(givenCategory);
+                    System.out.println("\n\nThe list of books from the given category (to be removed): ");
+
+                    //remove from list of books
+                    if(!booksToRemove.isEmpty())
+                    {
+                        List<Book> booksToRemoveList = booksToRemove.orElse(Collections.emptyList());
+                        for(Book book : booksToRemoveList)
+                        {
+                            System.out.println(book + "\n");
+                            bookService.removeById(book.getItemId());
+                        }
+                        System.out.println("\nAfter removing all the books from the given category: ");
+
+                        //downcasting to their original datatypes
+                        for (Book book : newCollection)
+                        {
+                            if (book instanceof Novel)
+                            {
+                                Novel novel = (Novel) book;
+                                System.out.println(novel);
+                            }
+                            else if (book instanceof Encyclopedia)
+                            {
+                                Encyclopedia encyclopedia = (Encyclopedia) book;
+                                System.out.println(encyclopedia);
+                            }
+                            else if (book instanceof PoemsVolume)
+                            {
+                                PoemsVolume poemsVolume = (PoemsVolume) book;
+                                System.out.println(poemsVolume);
+                            }
+                            else
+                            {
+                                System.out.println(book);
+                            }
+                        }
+                        //bookService.getAll().forEach(elementFromList -> System.out.println(elementFromList));
+                        }
+                        else
+                        {
+                            System.out.println("There are no books from the given category\n\n");
+                        }
+
+                }
+                else
+                {
+                    System.out.println("The category doesn't exist\n\n");
+                }
+
+
+//                Book modifiedBook = Novel.builder()
+//                        .itemId(UUID.randomUUID())
+//                        .title("The bastard of Istanbul")
+//                        .authors("Elif Shafak")
+//                        .publishing("Penguin")
+//                        .category(BookCategory.HISTORICAL_FICTION.getTypeString())
+//                        .publishing_year(2010)
+//                        .number_chapters(23)
+//                        .build();
+
+                try
+                {
+                    System.out.println("\n\nTitle of book to be modified:\n");
+                    String title = sc.nextLine();
+                    Book bookToModify = bookService.getByTitle(title).get();
+                    bookToModify.setPublishing("No publishing");
+                    bookService.modifyById(bookToModify.getItemId(), bookToModify);
+                    System.out.println("The list after the book with given title was modified:\n\n");
+                    bookService.getAll().forEach(elementFromList -> System.out.println(elementFromList));
+                }
+               catch(NoSuchElementException e)
+               {
+                   System.out.println("There is no such book\n\n");
+               }
+
+            }
+            else
+                if(option == 3)
+                {
+
+                    try
+                    {
+                        readerService.addAll(platformReaders);
+                        //open a new loan
+                        Loan newLoan = Loan.builder()
+                                .loanId(UUID.randomUUID())
+                                .readerID((readerService.getByName("Ionescu Anca").get()).getReaderID())
+                                .items_list(new ArrayList<Item>())
+                                .start_date(new Date())
+                                .return_date(new Date(2023, 4, 30))
+                                .extended(false)
+                                .build();
+
+                        Item newEbook = Ebook.builder()
+                                .itemId(UUID.randomUUID())
+                                .title("Ebook one")
+                                .authors("James P.")
+                                .format("pdf")
+                                .size(100)
+                                .build();
+                        newLoan.addItems_List(newEbook);
+
+                        Item newBook = Novel.builder()
+                        .itemId(UUID.randomUUID())
+                        .title("1984")
+                        .authors("George Orwell")
+                        .publishing("Penguin")
+                        .category(BookCategory.DYSTOPIAN.getTypeString())
+                        .publishing_year(2020)
+                        .number_chapters(20)
+                        .build();
+
+                        newLoan.addItems_List(newBook);
+
+                        System.out.println("The newly opened loan:\n\n" + newLoan);
+                    }
+                    catch(NoSuchElementException e)
+                    {
+                        System.out.println("Cannot open loan\n\n");
+                    }
+
+
+                }
         }
 
-        System.out.println("\nAfter removing all the books from the PSYCHOLOGY category: ");
-        bookService.getAll().forEach(elementFromList -> System.out.println(elementFromList));
+
+
+
     }
 }

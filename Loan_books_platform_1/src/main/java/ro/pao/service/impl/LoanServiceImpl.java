@@ -1,10 +1,11 @@
 package ro.pao.service.impl;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ro.pao.model.administration.Loan;
 import ro.pao.service.LoanService;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

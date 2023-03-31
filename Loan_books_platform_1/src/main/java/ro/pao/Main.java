@@ -3,13 +3,6 @@ import ro.pao.application.Menu;
 import java.util.Scanner;
 public class Main
 {
-    /*
-    public static void main(String[] args)
-    {
-        System.out.println("Hello world!");
-    }
-    */
-
     public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);
@@ -20,7 +13,8 @@ public class Main
 
             menu.intro();
 
-            if ("exit".equals(scanner.next())) {
+            if ("exit".equals(scanner.next()))
+            {
                 break;
             }
         }
