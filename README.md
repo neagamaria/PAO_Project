@@ -21,7 +21,7 @@
       - PoemsVolume extends Book
       - Encyclopedia extends Book
    - Ebook extends Reader
-   -
+   
   Administartion:
   - Person extends Reader
   - Company extends Reader
