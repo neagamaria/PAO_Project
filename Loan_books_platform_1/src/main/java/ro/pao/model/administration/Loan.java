@@ -39,4 +39,10 @@ public class Loan extends ArrayList
         this.items_list.remove(item);
         this.number_items--;
     }
+
+    public void extendLoan()
+    {
+        if(this.extended == true)
+          return_date = new Date(return_date.getTime()+ 86400000 * 30); //86 400 000 ms = 1 Day  : 24*60*60*1000
+    }
 }

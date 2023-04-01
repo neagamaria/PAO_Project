@@ -18,4 +18,11 @@ public class Book extends Item
     {
         System.out.println("The book " + this.getTitle() + " was added to the collection.");
     }
+
+    @Override
+    public void show()
+    {
+        super.show();
+        System.out.print(" Category: " + this.category + " Publishing: " + this.publishing + ", " + this.publishing_year + "\n");
+    }
 }

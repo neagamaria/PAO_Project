@@ -29,4 +29,13 @@ public class Novel extends Book
     {
         System.out.println("The novel " + this.getTitle() + " was added to the collection.");
     }
+
+    @Override
+    public void show()
+    {
+        super.show();
+        if(this.volume != 0)
+            System.out.print(" Voulme: " + this.volume);
+        System.out.print(" Number chapters: " + this.number_chapters + "\n\n");
+    }
 }

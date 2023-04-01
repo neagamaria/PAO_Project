@@ -15,4 +15,10 @@ public class Company extends Reader
     {
         System.out.println("Company " + this.getName() + " is logged in");
     }
+    @Override
+    public void show()
+    {
+        super.show();
+        System.out.print(" Number readers: : " + this.number_readers + " Link: " + this.link + "\n\n");
+    }
 }

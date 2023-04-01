@@ -11,4 +11,11 @@ public class Encyclopedia extends Book
     {
         System.out.println("The encyclopedia " + this.getTitle() + " was added to the collection.");
     }
+
+    @Override
+    public void show()
+    {
+        super.show();
+        System.out.print("Domain: " + this.domain + "\n\n");
+    }
 }

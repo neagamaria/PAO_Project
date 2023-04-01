@@ -14,4 +14,11 @@ public class Ebook extends Item
     {
         System.out.println("The ebook " + this.getTitle() + " was added to the collection.");
     }
+
+    @Override
+    public void show()
+    {
+        super.show();
+        System.out.print(" Size: " + this.size + " Format: " + this.format);
+    }
 }

@@ -23,4 +23,8 @@ public abstract class Item
     {
         total_items++;
     }
+    public void show()
+    {
+        System.out.print("Title: " + this.title + " Authors: " + this.authors);
+    }
 }
