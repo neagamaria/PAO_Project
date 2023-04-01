@@ -13,7 +13,7 @@
   - BookCategory (the possible categories for a book)
 
   Records:
-  -Offer (the fileds are validated inside the constructor)
+  - Offer (the fileds are validated inside the constructor)
   
   Products:
   - Book extends Item
