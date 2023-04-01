@@ -1,17 +1,19 @@
 # PAO_Project
 
-  This project named Loan_books_platform is based on the functionality of a platform for loaning items: books and ebooks. There are some special types of books which have their particular fields, therefore we can separate from Book entity the following: Novel, PoemsVolume and Encyclopedia. 
-  The readers that are logged in the platform can be either people or companies, for each category existing a subscription: the basic one for person and the Company_Subscription for company. What is more, there must be kept an evidence of the current loans in the platform, each loan belonging to a reader and having a collection of items assigned to it. Besides that, there are special offers available for a period of time that provide a discount for subscriptions and even certain facilities.
+  This project named Loan_books_platform is based on the functionality of a platform for loaning items: books and ebooks. Both these categories have fileds and methods specific to the item category. There are some special types of books which have their particular fields, therefore we can separate from Book entity the following: Novel, PoemsVolume and Encyclopedia; the other types of books share the original particularities of Book entity.
+  The readers that are logged in the platform can be either people or companies, for each category existing a subscription: the basic one for a person and the Company_Subscription for a company. What is more, there must be kept an evidence of the current loans in the platform, each loan belonging to a reader and having a collection of items assigned to it. Besides that, there are special offers available for a period of time that provide a discount for subscriptions and even certain facilities.
   
+ **Implementation**
+
  Classes:
   Abstracts:
-  - Item and Reader
+  - Item and Reader (there are no objects with only this class types, but they are used to be extended by subclasses)
 
   Enums:
   - BookCategory (the possible categories for a book)
 
   Records:
-  -Offer
+  -Offer (the fileds are validated inside the constructor)
   
   Products:
   - Book extends Item
@@ -27,11 +29,18 @@
       - CompanySubscription extends Subscription
   - Loan
 
-Service classes
+Service classes: (interfaces, contain methods for manipulating lists of objects; to be implemented in the impl classes)
   - ReaderService
   - BookService
   - LoanService
   - SubscriptionService
+
+Service-implement classes:
+  - ReaderServiceImpl
+  - BookServiceImpl
+  - LoanServiceImpl
+  - SubscriptionServiceImpl
+
 
 
 The actions that are implemented and exemplified in the project:
