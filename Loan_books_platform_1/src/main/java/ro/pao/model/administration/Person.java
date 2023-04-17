@@ -5,19 +5,16 @@ import ro.pao.model.abstracts.Reader;
 
 @SuperBuilder
 @Getter
-public class Person extends Reader
-{
+public class Person extends Reader {
     private int age;
     private String email;
     @Override
-    public void logIn()
-    {
+    public void logIn() {
         System.out.println("Person " + this.getName() + " is logged in");
     }
 
     @Override
-    public void show()
-    {
+    public void show() {
         super.show();
         System.out.print(" Age: " + this.age + " Email: " + this.email + "\n\n");
     }

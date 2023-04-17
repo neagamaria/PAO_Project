@@ -6,8 +6,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @SuperBuilder
 
-public class CompanySubscription extends Subscription
-{
+public class CompanySubscription extends Subscription {
     private double discount;
-    private int number_people;
+    private int numberPeople;
 }

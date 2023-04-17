@@ -12,15 +12,13 @@ import java.util.Date;
 @ToString
 @EqualsAndHashCode
 
-public abstract class Reader
-{
+public abstract class Reader {
     private UUID readerID;
     private String name;
-    private Date join_date;
+    private Date joinDate;
     public abstract void logIn();
 
-    public void show()
-    {
-        System.out.print("Name: " + this.name + " Join date: " + this.join_date);
+    public void show() {
+        System.out.print("Name: " + this.name + " Join date: " + this.joinDate);
     }
 }

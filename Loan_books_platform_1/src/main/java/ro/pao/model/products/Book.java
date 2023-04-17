@@ -8,21 +8,18 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @AllArgsConstructor
 
-public class Book extends Item
-{
+public class Book extends Item {
     private String publishing;
     private String category;
-    private int publishing_year;
+    private int publishingYear;
     @Override
-    public void addToCollection()
-    {
+    public void addToCollection() {
         System.out.println("The book " + this.getTitle() + " was added to the collection.");
     }
 
     @Override
-    public void show()
-    {
+    public void show() {
         super.show();
-        System.out.print(" Category: " + this.category + " Publishing: " + this.publishing + ", " + this.publishing_year + "\n");
+        System.out.print(" Category: " + this.category + " Publishing: " + this.publishing + ", " + this.publishingYear + "\n");
     }
 }

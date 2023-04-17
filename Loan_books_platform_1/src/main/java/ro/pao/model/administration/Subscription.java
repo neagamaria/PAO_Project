@@ -11,8 +11,7 @@ import java.util.UUID;
 @SuperBuilder
 @ToString
 @EqualsAndHashCode
-public class Subscription
-{
+public class Subscription {
     private UUID subscriptionID;
     private double price;
     private int validity;

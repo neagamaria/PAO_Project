@@ -5,37 +5,31 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder
 
-public class Novel extends Book
-{
+public class Novel extends Book {
     private int volume = 0; //number of volume 0 means the novel has no more other volumes
-    private int number_chapters;
+    private int numberChapters;
 
     //constructor for novel without multiple volumes
-    public Novel(String publishing, String category, int publishing_year, int chapters)
-    {
+    public Novel(String publishing, String category, int publishing_year, int chapters) {
         super(publishing, category, publishing_year);
-        this.number_chapters = chapters;
+        this.numberChapters = chapters;
     }
-    public void addVolumeToName()
-    {
-        if(this.volume != 0)
-        {
+    public void addVolumeToName() {
+        if(this.volume != 0) {
             String volume = Integer.toString(this.volume);
             this.setTitle(volume);
         }
     }
     @Override
-    public void addToCollection()
-    {
+    public void addToCollection() {
         System.out.println("The novel " + this.getTitle() + " was added to the collection.");
     }
 
     @Override
-    public void show()
-    {
+    public void show() {
         super.show();
         if(this.volume != 0)
             System.out.print(" Voulme: " + this.volume);
-        System.out.print(" Number chapters: " + this.number_chapters + "\n\n");
+        System.out.print(" Number chapters: " + this.numberChapters + "\n\n");
     }
 }

@@ -1,20 +1,16 @@
 package ro.pao;
 import ro.pao.application.Menu;
 import java.util.Scanner;
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        while (true)
-        {
+        while (true) {
             Menu menu = Menu.getInstance();
 
             menu.intro();
 
-            if ("exit".equals(scanner.next()))
-            {
+            if ("exit".equals(scanner.next())) {
                 break;
             }
         }

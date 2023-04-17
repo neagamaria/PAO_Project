@@ -11,20 +11,18 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode
 
-public abstract class Item
-{
+public abstract class Item {
     private UUID itemId;
     private String title;
     private String authors;
-    static int total_items = 0;
+    static int totalItems = 0;
     public abstract void addToCollection();
 
-    static
-    {
-        total_items++;
+    static {
+        totalItems++;
     }
-    public void show()
-    {
+    public void show() {
+
         System.out.print("Title: " + this.title + " Authors: " + this.authors);
     }
 }

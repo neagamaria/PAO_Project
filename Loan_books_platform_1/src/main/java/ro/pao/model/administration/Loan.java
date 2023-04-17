@@ -14,35 +14,30 @@ import java.util.UUID;
 @EqualsAndHashCode
 @ToString
 @Builder
-public class Loan extends ArrayList
-{
+public class Loan extends ArrayList {
     private UUID loanId;
     private UUID readerID;
-    private Date start_date;
-    private Date return_date;
+    private Date startDate;
+    private Date returnDate;
     private boolean extended = false; //if the loan is extended for another 2 weeks or not
-    private int number_items = 0;
-    private ArrayList<Item> items_list;
+    private int numberItems = 0;
+    private ArrayList<Item> itemsList;
 
-    public void setItems_list(ArrayList<Item> items_list)
-    {
-        this.items_list = items_list;
-        this.number_items = items_list.size();
+    public void setitemsList(ArrayList<Item> itemsList) {
+        this.itemsList = itemsList;
+        this.numberItems = itemsList.size();
     }
-    public void addItems_List(Item item)
-    {
-        this.items_list.add(item);
-        this.number_items++;
+    public void addItemsList(Item item) {
+        this.itemsList.add(item);
+        this.numberItems++;
     }
-    public void removeItems_List(Item item)
-    {
-        this.items_list.remove(item);
-        this.number_items--;
+    public void removeitemsList(Item item) {
+        this.itemsList.remove(item);
+        this.numberItems--;
     }
 
-    public void extendLoan()
-    {
+    public void extendLoan() {
         if(this.extended == true)
-          return_date = new Date(return_date.getTime()+ 86400000 * 30); //86 400 000 ms = 1 Day  : 24*60*60*1000
+          returnDate = new Date(returnDate.getTime()+ 86400000 * 30); //86 400 000 ms = 1 Day  : 24*60*60*1000
     }
 }

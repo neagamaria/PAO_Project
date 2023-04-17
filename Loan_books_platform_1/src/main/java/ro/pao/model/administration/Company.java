@@ -5,20 +5,17 @@ import ro.pao.model.abstracts.Reader;
 
 @SuperBuilder
 @Getter
-public class Company extends Reader
-{
+public class Company extends Reader {
     private String link;
-    private int number_readers;
+    private int numberReaders;
     static int count = 0;
     @Override
-    public void logIn()
-    {
+    public void logIn() {
         System.out.println("Company " + this.getName() + " is logged in");
     }
     @Override
-    public void show()
-    {
+    public void show() {
         super.show();
-        System.out.print(" Number readers: : " + this.number_readers + " Link: " + this.link + "\n\n");
+        System.out.print(" Number readers: : " + this.numberReaders + " Link: " + this.link + "\n\n");
     }
 }
