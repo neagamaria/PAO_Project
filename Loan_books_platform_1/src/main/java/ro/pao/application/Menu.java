@@ -42,8 +42,7 @@ public class Menu {
     }
 
     public void options() {
-        String text = "Choose an action:\n1.Display all readers sorted by join_date\n" +
-                "2.Display the new collection of books\n3.Open a new loan\n4.See the available offers";
+        String text = "Choose an action:\n1.Display all readers sorted by join_date\n 2.Display the new collection of books\n3.Open a new loan\n4.See the available offers";
         System.out.println(text);
     }
     public void intro() {
