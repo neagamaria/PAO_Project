@@ -33,5 +33,4 @@ public enum BookCategory {
                 .findAny()
                 .orElse(NONE); // in cazul in care nu este niciun field
     }
-
 }

@@ -2,7 +2,6 @@ package ro.pao.service;
 
 import org.junit.jupiter.api.Test;
 import ro.pao.model.ExampleClass;
-import ro.pao.repository.ExampleRepository;
 import ro.pao.repository.impl.ExampleRepositoryImpl;
 import ro.pao.service.impl.ExampleServiceImpl;
 
