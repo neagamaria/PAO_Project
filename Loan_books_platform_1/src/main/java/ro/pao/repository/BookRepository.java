@@ -18,5 +18,5 @@ public interface BookRepository {
 
     List<Book> getAll();
 
-    void addAllFromGivenList(List<Book> exampleClassList);
+    void addAllFromGivenList(List<Book> bookList);
 }

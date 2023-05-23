@@ -1,9 +1,9 @@
 package ro.pao.repository.impl;
 
 import ro.pao.config.DatabaseConfiguration;
-import ro.pao.mapper.BookMapper;
-import ro.pao.model.products.Book;
-import ro.pao.repository.BookRepository;
+import ro.pao.mapper.CompanyMapper;
+import ro.pao.model.administration.Company;
+import ro.pao.repository.CompanyRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,20 +13,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class BookRepositoryImpl implements BookRepository {
-
-    private static final BookMapper bookMapper = BookMapper.getInstance();
+public class CompanyRepositoryImpl implements CompanyRepository{
+    private static final CompanyMapper companyMapper = CompanyMapper.getInstance();
 
     @Override
-    public Optional<Book> getObjectById(UUID id) {
+    public Optional<Company> getObjectById(UUID id) {
         String selectSql = "SELECT * FROM book WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
             preparedStatement.setString(1, id.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return bookMapper.mapToBook(resultSet);
+            return companyMapper.mapToCompany(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,7 +38,7 @@ public class BookRepositoryImpl implements BookRepository {
         String updateNameSql = "DELETE FROM book WHERE itemid=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
             preparedStatement.setString(1, id.toString());
 
             preparedStatement.executeUpdate();
@@ -49,12 +48,12 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public void updateObjectById(UUID id, Book newBook) {
-        String updateNameSql = "UPDATE book SET title=? WHERE id=?";
+    public void updateObjectById(UUID id, Company newCompany) {
+        String updateNameSql = "UPDATE company SET link=? WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
-            preparedStatement.setString(1, newBook.getTitle());
+             PreparedStatement preparedStatement = connection.prepareStatement(updateNameSql)) {
+            preparedStatement.setString(1, newCompany.getLink());
             preparedStatement.setString(2, id.toString());
 
             preparedStatement.executeUpdate();
@@ -64,13 +63,13 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public void addNewObject(Book book) {
-        String insertSql = "INSERT INTO book (itemid, title) VALUES (?, ?)";
+    public void addNewObject(Company company) {
+        String insertSql = "INSERT INTO company (readerId, link) VALUES (?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
-            preparedStatement.setString(1, book.getItemId().toString());
-            preparedStatement.setString(2, book.getTitle());
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
+            preparedStatement.setString(1, company.getReaderID().toString());
+            preparedStatement.setString(2, company.getLink());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -79,14 +78,14 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public List<Book> getAll() {
+    public List<Company> getAll() {
         String selectSql = "SELECT * FROM book";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return bookMapper.mapToBookList(resultSet);
+            return companyMapper.mapToCompanyList(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -95,7 +94,8 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public void addAllFromGivenList(List<Book> bookList) {
-        bookList.forEach(this::addNewObject);
+    public void addAllFromGivenList(List<Company> companyList) {
+        companyList.forEach(this::addNewObject);
     }
+
 }
