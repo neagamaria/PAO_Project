@@ -12,9 +12,9 @@ public interface BookRepository {
 
     void deleteObjectById(UUID id);
 
-    void updateObjectById(UUID id, Book newObject);
+    void updateObjectById(UUID id, Book newBook);
 
-    void addNewObject(Book exampleClass);
+    void addNewObject(Book book);
 
     List<Book> getAll();
 

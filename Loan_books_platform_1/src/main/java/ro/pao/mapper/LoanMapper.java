@@ -20,14 +20,16 @@ public class LoanMapper {
     }
 
 
-    public Optional<Loan> mapToLoan(ResultSet resultSet) throws SQLException {
+    public static Optional<Loan> mapToLoan(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
                     Loan.builder()
                             .loanId(UUID.fromString(resultSet.getString(1)))
-                            .publishing(resultSet.getString(2))
-                            .category(LoanCategory.valueOf(resultSet.getString(3)).getTypeString())
-                            .publishingYear(resultSet.getInt(4))
+                            .readerID(UUID.fromString(resultSet.getString(2)))
+                            .startDate(resultSet.getDate(3))
+                            .returnDate(resultSet.getDate(4))
+                            .extended(resultSet.getBoolean(5))
+                            .numberItems(resultSet.getInt(6))
                             .build()
             );
         } else {
@@ -36,18 +38,20 @@ public class LoanMapper {
     }
 
     public List<Loan> mapToLoanList(ResultSet resultSet) throws SQLException {
-        List<Loan> LoanList = new ArrayList<>();
+        List<Loan> loanList = new ArrayList<>();
         while (resultSet.next()) {
-            LoanList.add(
+            loanList.add(
                     Loan.builder()
-                            .itemId(UUID.fromString(resultSet.getString(1)))
-                            .publishing(resultSet.getString(2))
-                            .category(LoanCategory.valueOf(resultSet.getString(3)).getTypeString())
-                            .publishingYear(resultSet.getInt(4))
+                            .loanId(UUID.fromString(resultSet.getString(1)))
+                            .readerID(UUID.fromString(resultSet.getString(2)))
+                            .startDate(resultSet.getDate(3))
+                            .returnDate(resultSet.getDate(4))
+                            .extended(resultSet.getBoolean(5))
+                            .numberItems(resultSet.getInt(6))
                             .build()
             );
         }
 
-        return LoanList;
+        return loanList;
     }
 }

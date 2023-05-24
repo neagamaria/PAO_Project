@@ -7,10 +7,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface LoanRepository {
-    Optional<Loan> getObjectById(UUID id);
-    void deleteObjectById(UUID id);
+    Optional<Loan> getObjectById(UUID loanId, UUID readerId);
+    void deleteObjectById(UUID loanId, UUID readerId);
 
-    void updateObjectById(UUID id, Loan newLoan);
+    void updateObjectById(UUID loanId, UUID readerId, Loan newLoan);
 
     void addNewObject(Loan loan);
 
