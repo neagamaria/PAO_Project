@@ -1,20 +1,21 @@
 package ro.pao.service;
 
 import org.junit.jupiter.api.Test;
-import ro.pao.model.ExampleClass;
-import ro.pao.repository.impl.ExampleRepositoryImpl;
-import ro.pao.service.impl.ExampleServiceImpl;
+import ro.pao.model.products.Book;
+import ro.pao.repository.BookRepository;
+import ro.pao.repository.impl.BookRepositoryImpl;
+import ro.pao.service.impl.BookServiceImpl;
 
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- * Metodele de test ale serviciului 'ExampleService'
+ * Metodele de test ale serviciului 'BookService'
  *
  * In functie de cate metode serviciu aveti, puteti face mai multe clase de test pe baza a ce clase serviciu aveti.
  *
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.when;
  *
  * Aceste teste se cheama 'unitare' pentru ca se testeaza 'per unitate'
  */
-class ExampleServiceTest {
+class BookServiceTest {
 
 
     /**
@@ -34,27 +35,27 @@ class ExampleServiceTest {
      * 'when{Descriere}_then{Descriere}
      */
     @Test
-    void whenGivenExampleClass_thenElementIsAdd() {
+    void whenGivenBook_thenElementIsAdd() {
         // given
         // pasul in care efectuam operatiile
 
-        ExampleClass exampleClass = ExampleClass.builder()
-                .id(UUID.randomUUID())
+        Book book = Book.builder()
+                .itemId(UUID.randomUUID())
                 .build();
-        ExampleRepository exampleRepository = mock(ExampleRepositoryImpl.class);
+        BookRepository bookRepository = mock(BookRepositoryImpl.class);
 
         // when
-        when(exampleRepository.getObjectById(any())).thenReturn(Optional.of(exampleClass));
+        when(bookRepository.getObjectById(any())).thenReturn(Optional.of(book));
 
-        //mockExampleClassMapper(resultSet);
+        //mockBookMapper(resultSet);
 
         // then
         // pasul in care testam comportamentul dupa apelarea functiilor
         // verifica daca cei doi parametri sunt egali, primul parametru fiind cel 'expected' si al doilea 'actual'
 
-        ExampleService exampleService = new ExampleServiceImpl(exampleRepository);
+        BookService bookService = new BookServiceImpl(bookRepository);
 
-        assertEquals(Optional.of(exampleClass), exampleService.getById(any()));
+        assertEquals(Optional.of(book), bookService.getById(any()));
 
         // assertEquals face parte din clasa Assertions si este o metoda statica
         // alte metode mai sunt:
