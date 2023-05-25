@@ -107,7 +107,7 @@ public class Menu {
             bookService.addAll(newCollection);
         }
         else {
-            System.out.println(bookService.getByTitle("The bastard of Istanbul"));
+            System.out.println(bookService.getByTitle("The bastard of Istanbul\n"));
         }
 
         System.out.println("Search all books from category: ");
