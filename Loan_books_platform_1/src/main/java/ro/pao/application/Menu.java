@@ -1,8 +1,5 @@
 package ro.pao.application;
 
-import ro.pao.model.abstracts.Reader;
-import ro.pao.model.administration.Company;
-import ro.pao.model.administration.Person;
 import ro.pao.model.enums.BookCategory;
 import ro.pao.model.products.Book;
 import ro.pao.model.products.Encyclopedia;
@@ -19,7 +16,8 @@ import java.util.*;
 public class Menu {
     private static Menu INSTANCE;
     private final ReaderService readerService = new ReaderServiceImpl();
-    private final BookService bookService = new BookServiceImpl(new BookRepositoryImpl());
+    BookRepositoryImpl bookRepositoryImpl = new BookRepositoryImpl();
+    private final BookService bookService = new BookServiceImpl(bookRepositoryImpl);
 
     public static Menu getInstance() {
         return (INSTANCE == null ? new Menu() : INSTANCE);
@@ -128,6 +126,10 @@ public class Menu {
         Scanner in = new Scanner(System.in);
         String category = in.nextLine();
 
+        for(Book iterator: bookService.getAll()) {
+            System.out.println(iterator);
+        }
+
         if(isStringInEnum(category.toUpperCase())) {
             Optional <List<Book>> booksInCategory = bookService.getByCategory(category);
             System.out.println("\n\nThe list of books from the given category: ");
@@ -143,7 +145,7 @@ public class Menu {
             }
         }
         
-        List<Reader> platformReaders = new ArrayList<>();
+       /* List<Reader> platformReaders = new ArrayList<>();
         platformReaders.add(Person.builder()
                 .readerID(UUID.randomUUID())
                 .name("Popescu Ion")

@@ -1,7 +1,6 @@
 package ro.pao.service.impl;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import ro.pao.model.products.Book;
 import ro.pao.repository.BookRepository;
@@ -12,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@NoArgsConstructor
 @Getter
 @RequiredArgsConstructor
 
@@ -21,7 +19,7 @@ public class BookServiceImpl implements BookService
     private BookRepository bookRepository;
     private static List<Book> bookList = new ArrayList<>();
 
-    public BookServiceImpl(BookRepository bookRepository) {
+   public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
