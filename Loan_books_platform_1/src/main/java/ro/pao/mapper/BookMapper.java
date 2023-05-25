@@ -26,11 +26,12 @@ public class BookMapper {
         if (resultSet.next()) {
             return Optional.of(
                     Book.builder()
-                    .itemId(UUID.fromString(resultSet.getString(1)))
-                    .publishing(resultSet.getString(2))
-                    .category(BookCategory.valueOf(resultSet.getString(3)).getTypeString())
-                    .publishingYear(resultSet.getInt(4))
-                    .build()
+                            .itemId(UUID.fromString(resultSet.getString(1)))
+                            .title(resultSet.getString(2))
+                            .publishing(resultSet.getString(3))
+                            .publishingYear(resultSet.getInt(4))
+                            .category(BookCategory.valueOf(resultSet.getString(5)).getTypeString())
+                            .build()
             );
         } else {
             return Optional.empty();
@@ -43,9 +44,10 @@ public class BookMapper {
             BookList.add(
                     Book.builder()
                             .itemId(UUID.fromString(resultSet.getString(1)))
-                            .publishing(resultSet.getString(2))
-                            .category(BookCategory.valueOf(resultSet.getString(3)).getTypeString())
+                            .title(resultSet.getString(2))
+                            .publishing(resultSet.getString(3))
                             .publishingYear(resultSet.getInt(4))
+                            .category(BookCategory.valueOf(resultSet.getString(5)).getTypeString())
                             .build()
             );
         }

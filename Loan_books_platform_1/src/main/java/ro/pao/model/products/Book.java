@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @AllArgsConstructor
 
-public class Book extends Item {
+public sealed class Book extends Item permits Novel, PoemsVolume, Encyclopedia{
     private String publishing;
     private String category;
     private int publishingYear;

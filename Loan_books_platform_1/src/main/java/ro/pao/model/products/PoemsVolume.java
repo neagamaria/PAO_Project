@@ -3,7 +3,7 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Getter
-public class PoemsVolume extends Book {
+public non-sealed class PoemsVolume extends Book {
     private final int numberPoems;
     private String literaryCurrent;
     @Override

@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder
 
-public class Novel extends Book {
+public non-sealed class Novel extends Book {
     private int volume = 0; //number of volume 0 means the novel has no more other volumes
     private int numberChapters;
 

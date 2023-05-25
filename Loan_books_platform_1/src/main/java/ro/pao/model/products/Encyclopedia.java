@@ -3,7 +3,7 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Getter
-public class Encyclopedia extends Book {
+public non-sealed class Encyclopedia extends Book {
     private String domain;
     @Override
     public void addToCollection() {

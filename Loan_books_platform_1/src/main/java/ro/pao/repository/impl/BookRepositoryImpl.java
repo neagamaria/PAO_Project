@@ -101,13 +101,15 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public void addNewObject(Book book) {
-        String insertSql = "INSERT INTO book (itemid, title) VALUES (?, ?)";
+        String insertSql = "INSERT INTO book (itemid, title, publishing, publishingYear, category) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
             preparedStatement.setString(1, book.getItemId().toString());
             preparedStatement.setString(2, book.getTitle());
-
+            preparedStatement.setString(3, book.getPublishing());
+            preparedStatement.setInt(4, book.getPublishingYear());
+            preparedStatement.setString(5, book.getCategory());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
