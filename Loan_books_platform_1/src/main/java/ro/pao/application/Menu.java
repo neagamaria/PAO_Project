@@ -102,9 +102,7 @@ public class Menu {
                         .publishingYear(2011)
                         .category(BookCategory.BIOGRAPHY.getTypeString())
                         .build());
-
         bookService.addAll(newCollection);
-
         if(bookService.getAll() == null) {
             bookService.addAll(newCollection);
         }

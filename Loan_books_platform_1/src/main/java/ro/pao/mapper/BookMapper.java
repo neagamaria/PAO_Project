@@ -1,7 +1,6 @@
 package ro.pao.mapper;
 
 import ro.pao.model.products.Book;
-import ro.pao.model.enums.BookCategory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +29,7 @@ public class BookMapper {
                             .title(resultSet.getString(2))
                             .publishing(resultSet.getString(3))
                             .publishingYear(resultSet.getInt(4))
-                            .category(BookCategory.valueOf(resultSet.getString(5)).getTypeString())
+                            .category(resultSet.getString(5))
                             .build()
             );
         } else {
@@ -47,7 +46,7 @@ public class BookMapper {
                             .title(resultSet.getString(2))
                             .publishing(resultSet.getString(3))
                             .publishingYear(resultSet.getInt(4))
-                            .category(BookCategory.valueOf(resultSet.getString(5)).getTypeString())
+                            .category((resultSet.getString(5)))
                             .build()
             );
         }
