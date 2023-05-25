@@ -14,6 +14,5 @@ public interface LoanService
     void addOne(Loan loan);
     void removeById(UUID id);
     void modifyById(UUID id, Loan newLoan);
-    //void assignToReader(Reader reader);
 
 }

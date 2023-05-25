@@ -8,101 +8,39 @@ import ro.pao.model.products.Book;
 import ro.pao.model.products.Encyclopedia;
 import ro.pao.model.products.Novel;
 import ro.pao.model.products.PoemsVolume;
+import ro.pao.repository.impl.BookRepositoryImpl;
 import ro.pao.service.BookService;
 import ro.pao.service.ReaderService;
 import ro.pao.service.impl.BookServiceImpl;
 import ro.pao.service.impl.ReaderServiceImpl;
-import ro.pao.model.administration.Loan;
-import ro.pao.model.abstracts.Item;
-import ro.pao.model.products.Ebook;
-import ro.pao.model.records.Offer;
 
 import java.util.*;
+
 public class Menu {
     private static Menu INSTANCE;
     private final ReaderService readerService = new ReaderServiceImpl();
-    private final BookService bookService = new BookServiceImpl();
+    private final BookService bookService = new BookServiceImpl(new BookRepositoryImpl());
 
-    public static Menu getInstance()
-    {
+    public static Menu getInstance() {
         return (INSTANCE == null ? new Menu() : INSTANCE);
     }
 
     private Menu() {
     }
+
     //function used to verify if a given category is in the book categories list
     public boolean isStringInEnum(String input) {
         try {
             BookCategory.valueOf(input);
             return true;
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return false;
         }
     }
 
-    public void options() {
-        String text = "Choose an action:\n1.Display all readers sorted by join_date\n 2.Display the new collection of books\n3.Open a new loan\n4.See the available offers";
-        System.out.println(text);
-    }
+
     public void intro() {
-        this.options();
-        Scanner sc1= new Scanner(System.in);
-        int option = sc1.nextInt();
 
-        //list of readers with upcasting
-        //created for sorting
-        List<Reader> platformReaders = new ArrayList<>();
-        platformReaders.add(Person.builder()
-                .readerID(UUID.randomUUID())
-                .name("Popescu Ion")
-                .joinDate(new Date(2021, 7, 9)) // set join date to March 1st, 2022
-                .age(25)
-                .email("popescuion@gmail.com")
-                .build());
-
-        platformReaders.add(Person.builder()
-                .readerID(UUID.randomUUID())
-                .name("Georgescu Elena")
-                .joinDate(new Date(2022, 5, 7))
-                .age(33)
-                .email("elenag@yahoo.ro")
-                .build());
-
-        platformReaders.add(Person.builder()
-                .readerID(UUID.randomUUID())
-                .name("Ionescu Anca")
-                .joinDate(new Date(2022, 12, 22))
-                .age(40)
-                .email("ancaionescu@yahoo.com")
-                .build());
-
-        platformReaders.add(Company.builder()
-                .readerID(UUID.randomUUID())
-                .name("Vodafone")
-                .joinDate(new Date(2022, 2, 1))
-                .numberReaders(100)
-                .link("www.vodafone.ro")
-                .build());
-
-        platformReaders.add(Company.builder()
-                .readerID(UUID.randomUUID())
-                .name("Revolut")
-                .joinDate(new Date(2023, 3, 4))
-                .numberReaders(50)
-                .link("www.revolut.com")
-                .build());
-
-        platformReaders.add(Company.builder()
-                .readerID(UUID.randomUUID())
-                .name("eMag")
-                .joinDate(new Date(2022, 10, 11))
-                .numberReaders(50)
-                .link("www.emag.ro")
-                .build());
-
-
-        //list of Books with upcasting
         List<Book> newCollection = List.of(
                 Novel.builder()
                         .itemId(UUID.randomUUID())
@@ -184,8 +122,77 @@ public class Menu {
                         .category(BookCategory.BIOGRAPHY.getTypeString())
                         .publishingYear(2011)
                         .build());
+        bookService.addAll(newCollection);
+        
+        System.out.println("Search all books from category: ");
+        Scanner in = new Scanner(System.in);
+        String category = in.nextLine();
 
+        if(isStringInEnum(category.toUpperCase())) {
+            Optional <List<Book>> booksInCategory = bookService.getByCategory(category);
+            System.out.println("\n\nThe list of books from the given category: ");
 
+            if(!booksInCategory.isEmpty()){
+                List<Book> booksInCategoryList = booksInCategory.orElse(Collections.emptyList());
+                Iterator<Book> itr = booksInCategoryList.iterator();
+
+                while(itr.hasNext()) {
+                    Book currentBook = itr.next();
+                    currentBook.show();
+                }
+            }
+        }
+        
+        List<Reader> platformReaders = new ArrayList<>();
+        platformReaders.add(Person.builder()
+                .readerID(UUID.randomUUID())
+                .name("Popescu Ion")
+                .joinDate(new Date(2021, 7, 9)) // set join date to March 1st, 2022
+                .age(25)
+                .email("popescuion@gmail.com")
+                .build());
+
+        platformReaders.add(Person.builder()
+                .readerID(UUID.randomUUID())
+                .name("Georgescu Elena")
+                .joinDate(new Date(2022, 5, 7))
+                .age(33)
+                .email("elenag@yahoo.ro")
+                .build());
+
+        platformReaders.add(Person.builder()
+                .readerID(UUID.randomUUID())
+                .name("Ionescu Anca")
+                .joinDate(new Date(2022, 12, 22))
+                .age(40)
+                .email("ancaionescu@yahoo.com")
+                .build());
+
+        platformReaders.add(Company.builder()
+                .readerID(UUID.randomUUID())
+                .name("Vodafone")
+                .joinDate(new Date(2022, 2, 1))
+                .numberReaders(100)
+                .link("www.vodafone.ro")
+                .build());
+
+        platformReaders.add(Company.builder()
+                .readerID(UUID.randomUUID())
+                .name("Revolut")
+                .joinDate(new Date(2023, 3, 4))
+                .numberReaders(50)
+                .link("www.revolut.com")
+                .build());
+
+        platformReaders.add(Company.builder()
+                .readerID(UUID.randomUUID())
+                .name("eMag")
+                .joinDate(new Date(2022, 10, 11))
+                .numberReaders(50)
+                .link("www.emag.ro")
+                .build());
+
+        /*
         if(option == 1) {
             Collections.sort(platformReaders, new Comparator<Reader>() {
                 public int compare(Reader r1, Reader r2) {
@@ -327,5 +334,8 @@ public class Menu {
                     }
                 }
         }
+    }
+
+    */
     }
 }

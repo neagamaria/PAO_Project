@@ -11,7 +11,7 @@ public interface BookService
 {
     Optional<Book> getById(UUID id);
     Optional<List<Book>> getByCategory(String category);
-    Optional<Book> getByTitle(String title);
+    Optional<List<Book>> getByTitle(String title);
     List<Book> getAll();
     void addAll(List<Book> bookList);
     void addOne(Book book);

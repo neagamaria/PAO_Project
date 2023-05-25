@@ -1,4 +1,5 @@
 package ro.pao.model.products;
+
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 

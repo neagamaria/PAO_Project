@@ -10,6 +10,10 @@ public interface BookRepository {
 
     Optional<Book> getObjectById(UUID id);
 
+    Optional<List<Book>> getObjectByCategory(String category);
+
+    Optional<List<Book>> getObjectByTitle(String title);
+
     void deleteObjectById(UUID id);
 
     void updateObjectById(UUID id, Book newBook);

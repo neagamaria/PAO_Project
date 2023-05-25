@@ -16,6 +16,7 @@ public abstract class Reader {
     private UUID readerID;
     private String name;
     private Date joinDate;
+
     public abstract void logIn();
 
     public void show() {

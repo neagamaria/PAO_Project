@@ -61,7 +61,6 @@ class BookServiceTest {
         // alte metode mai sunt:
         // asssertTrue -> verifica daca e true
         // assertTrue(true);
-
         // assertFalse -> verifica daca e false
         // assertFalse(false);
     }

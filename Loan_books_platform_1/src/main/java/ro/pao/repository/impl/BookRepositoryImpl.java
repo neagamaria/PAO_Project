@@ -34,6 +34,42 @@ public class BookRepositoryImpl implements BookRepository {
         return Optional.empty();
     }
 
+
+    @Override
+    public Optional<List<Book>> getObjectByCategory(String category) {
+        String selectSql = "SELECT * FROM book WHERE category=?";
+
+        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            preparedStatement.setString(1, category.toString());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return Optional.ofNullable(bookMapper.mapToBookList(resultSet));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Optional.empty();
+
+    }
+
+    @Override
+    public Optional<List<Book>> getObjectByTitle(String title) {
+        String selectSql = "SELECT * FROM book WHERE title=?";
+
+        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            preparedStatement.setString(1, title.toString());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return Optional.ofNullable(bookMapper.mapToBookList(resultSet));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Optional.empty();
+
+    }
     @Override
     public void deleteObjectById(UUID id) {
         String updateNameSql = "DELETE FROM book WHERE itemid=?";
