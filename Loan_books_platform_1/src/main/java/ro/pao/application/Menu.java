@@ -10,6 +10,8 @@ import ro.pao.service.BookService;
 import ro.pao.service.ReaderService;
 import ro.pao.service.impl.BookServiceImpl;
 import ro.pao.service.impl.ReaderServiceImpl;
+import ro.pao.threads.AllCategoriesThread;
+import ro.pao.threads.OldestBookThread;
 
 import java.util.*;
 
@@ -102,21 +104,27 @@ public class Menu {
                         .publishingYear(2011)
                         .category(BookCategory.BIOGRAPHY.getTypeString())
                         .build());
-        bookService.addAll(newCollection);
+
         if(bookService.getAll() == null) {
             bookService.addAll(newCollection);
         }
         else {
-            System.out.println(bookService.getByTitle("The bastard of Istanbul\n"));
+            System.out.println("The collection is already in the database");
         }
 
+        HashSet<String> allCategories = new HashSet<>();
+        AllCategoriesThread firstThread = new AllCategoriesThread(bookService.getAll(), allCategories);
+        Thread t1 = new Thread(firstThread);
+        t1.start();
+
+        System.out.println(" ");
         System.out.println("Search all books from category: ");
         Scanner in = new Scanner(System.in);
         String category = in.nextLine();
 
         if(isStringInEnum(category.toUpperCase())) {
             Optional <List<Book>> booksInCategory = bookService.getByCategory(category);
-            System.out.println("\n\nThe list of books from the given category: " + bookService.getAll().size());
+            System.out.println("\n\nThe list of books from the given category: ");
 
             if(!booksInCategory.isEmpty()){
                 List<Book> booksInCategoryList = booksInCategory.orElse(Collections.emptyList());
@@ -125,12 +133,17 @@ public class Menu {
                 while(itr.hasNext()) {
                     Book currentBook = itr.next();
                     System.out.println(currentBook.getTitle());
-                    //currentBook.show();
                 }
             }
             else {
                 System.out.println("There are no books in the given category");
             }
         }
+
+        System.out.println("\n");
+        Book oldestBook = new Book("", "", 2023);
+        OldestBookThread secondThread = new OldestBookThread(bookService.getAll(), oldestBook);
+        Thread t2 = new Thread(secondThread);
+        t2.start();
     }
 }
