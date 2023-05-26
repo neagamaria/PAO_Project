@@ -16,7 +16,9 @@
  **Iterator**
  It is used to go through the elements stored in the instance of BookService declared in the Menu.
  
+ **Threads**
+ The two separate threads that are present in the project handle two different operations in relation to the list of books: the first one gets all the categories that have books assigned to them, while the second one determines the oldest book in the collection.
+ 
  **Operations**
  I created a list of books and saved it in the Database in order to be able to select all the books from the model that are included in a given category.
  
-
